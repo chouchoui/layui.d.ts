@@ -398,8 +398,20 @@ declare module layui {
         render(option: UploadOption): Upload;
     }
 
-    interface Rate {
+    interface RateOption {
+        elem?: string | HTMLElement;
+        length?: number;
+        value?: number;
+        theme?: string;
+        half?: boolean;
+        text?: boolean;
+        readonly?: boolean;
+        setText?: (value: number) => void;
+        choose?: (value: number) => void;
+    }
 
+    interface Rate {
+        render(option: RateOption): Rate;
     }
 
     export let layer: Layer;
