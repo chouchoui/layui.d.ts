@@ -414,6 +414,49 @@ declare module layui {
         render(option: RateOption): Rate;
     }
 
+    interface FlowOption {
+        elem?: string | HTMLElement;
+        scrollElem?: string | HTMLElement;
+        isAuto?: boolean;
+        end?: string;
+        isLazyimg?: boolean;
+        mb?: number;
+        done?: (page: number, next: (html: string, isMore: boolean) => void) => void;
+    }
+
+    interface Flow {
+        load(option: FlowOption);
+        lazyimg();
+        lazyimg(option: FlowOption);
+    }
+
+    interface UtilBarOption {
+        bar1?: boolean | string;
+        bar2?: boolean | string;
+        bgcolor?: string;
+        showHeight?: number;
+        css?: object;
+        click?: (type: string) => void;
+    }
+
+    interface Util {
+        fixbar(option: UtilBarOption);
+        countdown(endtime: number | Date, serverTime: number | Date, callback: (date: any, serverTime: number | Date, timer: any) => void);
+        timeAgo(time: number | Date, onlyDate: boolean);
+        toDateString(time: number | Date, format: string);
+        digit(num: number, length: number);
+        escape(str: string);
+    }
+
+    interface CodeOption {
+        elem?: string;
+        title?: string;
+        height?: string;
+        encode?: boolean;
+        skin?: string;
+        about?: boolean;
+    }
+
     export let layer: Layer;
     export let element: Element;
     export let form: Form;
@@ -423,6 +466,11 @@ declare module layui {
     export let table: Table;
     export let upload: Upload;
     export let rate: Rate;
+    export let flow: Flow;
+    export let util: Util;
+
+    export function code(): void;
+    export function code(option: CodeOption): void;
 
     export function use(mods: string | string[], callback: (...args: any[]) => any): any;
 }
