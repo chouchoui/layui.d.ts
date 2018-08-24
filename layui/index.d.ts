@@ -1,5 +1,3 @@
-///<reference path="../jquery/index.d.ts" />
-
 declare module layui {
     type LayerCallbackSuccess = null | ((layero: JQuery, index: number) => void);
     type LayerCallbackYes = null | ((index: number, layero: JQuery) => boolean | void);
