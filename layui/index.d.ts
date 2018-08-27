@@ -1,3 +1,5 @@
+///<reference path="../jquery/index.d.ts" />
+
 declare module layui {
     type LayerCallbackSuccess = null | ((layero: JQuery, index: number) => void);
     type LayerCallbackYes = null | ((index: number, layero: JQuery) => boolean | void);
@@ -455,6 +457,23 @@ declare module layui {
         about?: boolean;
     }
 
+    interface TreeOption {
+        elem?: string;
+        skin?: string;
+        href?: string;
+        target?: string;
+        nodes?: TreeNode | TreeNode[];
+        click?: (node: TreeNode) => void;
+    }
+
+    interface TreeNode {
+        name?: string;
+        spread?: boolean;
+        href?: string;
+        children?: TreeNode | TreeNode[];
+        [propName: string]: any;
+    }
+
     export let layer: Layer;
     export let element: Element;
     export let form: Form;
@@ -469,6 +488,7 @@ declare module layui {
 
     export function code(): void;
     export function code(option: CodeOption): void;
+    export function tree(option: TreeOption): void;
 
     export function use(mods: string | string[], callback: (...args: any[]) => any): any;
 }
