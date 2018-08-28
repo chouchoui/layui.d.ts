@@ -527,8 +527,6 @@ declare module layui {
 
     interface ColorPicker {
         render(option: ColorPickerOption): ColorPicker;
-        setValue(value: number);
-        setValue(value1: number, value2: number);
     }
 
     interface SliderOption {
@@ -551,6 +549,8 @@ declare module layui {
 
     interface Slider {
         render(option: SliderOption);
+        setValue(value: number);
+        setValue(value1: number, value2: number);
     }
 
     export let layer: Layer;
