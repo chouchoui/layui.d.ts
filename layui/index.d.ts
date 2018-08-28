@@ -548,7 +548,7 @@ declare module layui {
     }
 
     interface Slider {
-        render(option: SliderOption);
+        render(option: SliderOption): Slider;
         setValue(value: number);
         setValue(value1: number, value2: number);
     }
