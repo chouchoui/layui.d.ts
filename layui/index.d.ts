@@ -513,6 +513,46 @@ declare module layui {
         [propName: string]: any;
     }
 
+    interface ColorPickerOption {
+        elem?: string | HTMLElement;
+        color?: string;
+        format?: "hex" | "rgb" | "rgba";
+        aplha?: boolean;
+        predefine?: boolean;
+        colors?: string[];
+        size?: "lg" | "sm" | "xs";
+        change?: (color: any) => void;
+        done?: (color: any) => void;
+    }
+
+    interface ColorPicker {
+        render(option: ColorPickerOption): ColorPicker;
+        setValue(value: number);
+        setValue(value1: number, value2: number);
+    }
+
+    interface SliderOption {
+        elem?: string | HTMLElement;
+        type?: "default" | "vertical";
+        mix?: number;
+        max?: number;
+        range?: boolean;
+        value?: number | number[];
+        step?: number;
+        showstep?: boolean;
+        tips?: boolean;
+        input?: boolean;
+        height?: number;
+        disabled?: boolean;
+        theme?: string;
+        setTips?: (value: number | number[]) => string;
+        change?: (value: number | number[]) => string;
+    }
+
+    interface Slider {
+        render(option: SliderOption);
+    }
+
     export let layer: Layer;
     export let element: Element;
     export let form: Form;
@@ -524,6 +564,8 @@ declare module layui {
     export let rate: Rate;
     export let flow: Flow;
     export let util: Util;
+    export let colorpicker: ColorPicker;
+    export let slider: Slider;
 
     export function code(): void;
     export function code(option: CodeOption): void;
