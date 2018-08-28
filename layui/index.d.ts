@@ -310,9 +310,12 @@ declare module layui {
         title?: string;
         width?: string | number;
         minWidth?: number;
-        type?: "normal" | "checkbox" | "space" | "numbers";
+        type?: "normal" | "checkbox" | "radio" | "space" | "numbers";
         LAY_CHECKED?: boolean;
         fixed?: string;
+        hide?: boolean;
+        totalRow?: boolean;
+        totalRowText?: boolean;
         sort?: boolean;
         unresize?: boolean;
         edit?: string;
@@ -325,17 +328,39 @@ declare module layui {
         toolbar?: string;
     }
 
-    interface TableRequestParam {
+    interface TableRequestRename {
         pageName: string;
         limitName: string;
     }
 
-    interface TableResponseParam {
+    interface TableResponseRename {
         statusName: string;
         statusCode: number;
         msgName: string;
         countName: string;
         dataName: string;
+    }
+
+    interface TableResponse {
+        code: number;
+        msg: string;
+        count: number;
+        data: any;
+        [propName: string]: any;
+    }
+
+    interface TableOriginResponse {
+        status: number;
+        message: string;
+        total: number;
+        data: any;
+        [propName: string]: any;
+    }
+
+    interface TableRequest {
+        page: number;
+        limit: number;
+        [propName: string]: any;
     }
 
     interface TableSortParam {
@@ -347,19 +372,33 @@ declare module layui {
         elem?: string | HTMLElement;
         cols?: TableColumnOption[][];
         url?: string;
-        method?: string;
-        where?: object;
-        contentType?: string;
-        headers?: object;
-        request?: TableRequestParam;
-        response?: TableResponseParam;
-        done?: (res: object, curr: number, count: number) => void;
-        text?: object;
-        initSort?: TableSortParam;
+        toolbar?: string | HTMLElement | boolean;
         height?: number | string;
+        width?: number;
+        cellMinWidth?: number;
+        done?: (res: object, curr: number, count: number) => void;
+        data?: any[];
+        totalRow?: boolean;
+        page?: boolean | object;
+        limit?: number;
+        limits?: number[];
+        loading?: boolean;
+        title?: string;
+        text?: any;
+        initSort?: TableSortParam;
+        id?: string;
         skin?: "line" | "row" | "nob";
         even?: boolean;
         size?: "sm" | "lg";
+
+        method?: string;
+        where?: any;
+        contentType?: string;
+        headers?: any;
+        parseData?: (res: TableOriginResponse) => TableResponse;
+
+        request?: TableRequestRename;
+        response?: TableResponseRename;
     }
 
     interface Table {
@@ -367,7 +406,7 @@ declare module layui {
         init(filter: string, option: TableOption): object;
         reload(option: TableOption);
         reload(id: string, option: TableOption);
-        on(event: string, callback: (obj: TableOption) => any): void;
+        on(event: string, callback: (obj: any) => any): void;
         set(option: TableOption);
         checkStatus(id: string);
     }
